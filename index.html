@@ -1,7 +1,178 @@
-<html><head><title>Basket & Beyond</title></head>
-<body style="font-family:sans-serif;text-align:center;">
-<h1>🎁 Basket & Beyond</h1>
-<p>Custom gift baskets for every occasion.</p>
-<a href="#shop">Shop Now</a> | <a href="#custom">Build Yours</a>
-<footer><p>Made with ❤️ for busy gift‑givers</p></footer>
-</body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Basket & Beyond</title>
+<style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    background: #fff8f0;
+    color: #333;
+    text-align: center;
+  }
+  header {
+    background: #ff8c42;
+    color: #fff;
+    padding: 1.5rem 0;
+  }
+  nav a {
+    color: #fff;
+    margin: 0 0.5rem;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  section {
+    padding: 2rem 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  h2 { margin-bottom: 1rem; }
+  .basket-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .basket {
+    background: #fff3e0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    max-width: 300px;
+    padding: 1rem;
+    flex: 1 1 280px;
+    text-align: center;
+  }
+  .basket img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  .button {
+    display: inline-block;
+    background: #ff6f00;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    margin-top: 0.3rem;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+  form {
+    margin-top: 0.5rem;
+  }
+  input, textarea {
+    width: 80%;
+    max-width: 280px;
+    padding: 0.5rem;
+    margin: 0.3rem 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  footer {
+    background: #ff8c42;
+    color: #fff;
+    padding: 1rem 0;
+    margin-top: 2rem;
+  }
+  @media(max-width: 600px){
+    .basket-container { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🎁 Basket & Beyond</h1>
+  <p>Custom gift baskets for every occasion</p>
+  <nav>
+    <a href="#shop">Shop</a> |
+    <a href="#about">About</a> |
+    <a href="#custom">Build Yours</a> |
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section id="about">
+  <h2>About Basket & Beyond</h2>
+  <p>
+    Basket & Beyond is your friendly, cozy corner for thoughtful gift baskets.  
+    From Halloween treats to birthday surprises, our mission is simple:  
+    make gift-giving fun, easy, and memorable — without breaking the bank.  
+    Soft, seasonal designs and customizable baskets make every gift special.
+  </p>
+</section>
+
+<section id="shop">
+  <h2>🎃 Featured Baskets</h2>
+  <div class="basket-container">
+
+    <div class="basket">
+      <img src="https://images.pexels.com/photos/4109992/pexels-photo-4109992.jpeg" alt="Spooky Treat Basket" />
+      <h3>Spooky Treat Basket</h3>
+      <p>$25 — Candy, cocoa, and cozy vibes!</p>
+      <a class="button" href="https://ko-fi.com/mamasaidherbalhomeschool" target="_blank">Buy with Ko-fi</a>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+        <input type="hidden" name="cmd" value="_xclick">
+        <input type="hidden" name="business" value="Heather.Hilliard7@alumni.ctuonline.edu">
+        <input type="hidden" name="item_name" value="Spooky Treat Basket">
+        <input type="hidden" name="amount" value="25.00">
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="submit" value="Buy with PayPal" class="button">
+      </form>
+    </div>
+
+    <div class="basket">
+      <img src="https://images.pexels.com/photos/4109993/pexels-photo-4109993.jpeg" alt="Deluxe Halloween Basket" />
+      <h3>Deluxe Halloween Basket</h3>
+      <p>$50 — Bigger, spookier, tastier treats.</p>
+      <a class="button" href="https://ko-fi.com/mamasaidherbalhomeschool" target="_blank">Buy with Ko-fi</a>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+        <input type="hidden" name="cmd" value="_xclick">
+        <input type="hidden" name="business" value="Heather.Hilliard7@alumni.ctuonline.edu">
+        <input type="hidden" name="item_name" value="Deluxe Halloween Basket">
+        <input type="hidden" name="amount" value="50.00">
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="submit" value="Buy with PayPal" class="button">
+      </form>
+    </div>
+
+    <div class="basket">
+      <img src="https://images.pexels.com/photos/4109994/pexels-photo-4109994.jpeg" alt="Ultimate Halloween Basket" />
+      <h3>Ultimate Halloween Basket</h3>
+      <p>$100 — Everything spooky and deluxe for the perfect gift!</p>
+      <a class="button" href="https://ko-fi.com/mamasaidherbalhomeschool" target="_blank">Buy with Ko-fi</a>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+        <input type="hidden" name="cmd" value="_xclick">
+        <input type="hidden" name="business" value="Heather.Hilliard7@alumni.ctuonline.edu">
+        <input type="hidden" name="item_name" value="Ultimate Halloween Basket">
+        <input type="hidden" name="amount" value="100.00">
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="submit" value="Buy with PayPal" class="button">
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<section id="custom">
+  <h2>🎨 Build Your Own Basket</h2>
+  <p>Coming soon: Choose your size, theme, and goodies! Send us your request below.</p>
+  <form action="https://submit-form.com/iOX6DQ2GP" method="POST">
+    <input type="text" id="name" name="name" placeholder="Name" required />
+    <input type="email" id="email" name="email" placeholder="Email" required />
+    <textarea id="message" name="message" placeholder="Basket requests / notes" required></textarea>
+    <button type="submit" class="button">Send Request</button>
+  </form>
+</section>
+
+<section id="coming-soon">
+  <h2>✨ Coming Soon</h2>
+  <p>More basket types, seasonal specials, referral credits, and surprise deals! Stay tuned.</p>
+</section>
+
+<footer>
+  <p>Made with ❤️ for busy gift-givers | Basket & Beyond</p>
+</footer>
+
+</body>
+</html>
