@@ -5,36 +5,91 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Basket & Beyond</title>
 <style>
-/* ====== Global ====== */
+/* ====== Colors & Theme Variables ====== */
+:root {
+  --primary-color: #A3D8F4; /* soft blue */
+  --secondary-color: #FF6F61; /* warm coral */
+  --accent-color: #FFD700; /* golden yellow */
+  --bg-color: #F5F5DC; /* light beige */
+  --text-color: #333333;
+  --card-bg: #fff3e0;
+  --card-border: #e0c9b0;
+}
+
+/* ====== Night Mode Variables ====== */
+body.night {
+  --bg-color: #2c2c2c;
+  --text-color: #f5f5f5;
+  --card-bg: #3a3a3a;
+  --card-border: #555;
+}
+
 body {
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
-  background: #fff8f0;
-  color: #333;
-  text-align: center;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.5s, color 0.5s;
 }
-a { text-decoration: none; }
+
+/* ====== Header ====== */
 header {
-  background: #ff8c42;
+  background: var(--secondary-color);
   color: #fff;
-  padding: 1.5rem 0;
+  padding: 1.5rem 1rem;
   position: sticky;
   top: 0;
   z-index: 100;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
-nav a {
-  color: #fff;
-  margin: 0 0.6rem;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-nav a:hover { color: #fff0b3; }
 
+header h1 { margin: 0; font-size: 1.8rem; }
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+nav a, .header-button {
+  color: #fff;
+  margin: 0 0.4rem;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+nav a:hover, .header-button:hover {
+  background: #fff0b3;
+  color: var(--secondary-color);
+  cursor: pointer;
+}
+
+/* Night toggle button */
+#theme-toggle {
+  background: #fff;
+  color: var(--secondary-color);
+  border: none;
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+
+/* ====== Sections ====== */
 section {
   padding: 2rem 1rem;
   max-width: 1000px;
   margin: 0 auto;
 }
+
 h2 { margin-bottom: 1rem; }
 
 /* ====== Basket Cards ====== */
@@ -44,20 +99,23 @@ h2 { margin-bottom: 1rem; }
   justify-content: center;
   gap: 1.2rem;
 }
+
 .basket {
-  background: #fff3e0;
+  background-color: var(--card-bg);
   border-radius: 12px;
-  border: 1px solid #e0c9b0;
+  border: 1px solid var(--card-border);
   max-width: 300px;
   flex: 1 1 280px;
   padding: 1rem;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s;
 }
+
 .basket:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
+
 .basket img {
   width: 100%;
   border-radius: 12px;
@@ -66,7 +124,7 @@ h2 { margin-bottom: 1rem; }
 /* ====== Buttons ====== */
 .button {
   display: inline-block;
-  background: #ff6f00;
+  background: var(--secondary-color);
   color: #fff;
   padding: 0.5rem 1rem;
   margin-top: 0.3rem;
@@ -74,7 +132,8 @@ h2 { margin-bottom: 1rem; }
   transition: background 0.3s ease;
   cursor: pointer;
 }
-.button:hover { background: #ff8c42; }
+
+.button:hover { background: var(--accent-color); color: #333; }
 
 /* ====== Forms ====== */
 form { margin-top: 1rem; }
@@ -85,12 +144,18 @@ input, textarea, select {
   margin: 0.3rem 0;
   border-radius: 5px;
   border: 1px solid #ccc;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+body.night input, body.night textarea, body.night select {
+  background: #555;
+  color: #fff;
+  border: 1px solid #888;
 }
 textarea { resize: vertical; }
 
 /* ====== Footer ====== */
 footer {
-  background: #ff8c42;
+  background: var(--secondary-color);
   color: #fff;
   padding: 1rem 0;
   margin-top: 2rem;
@@ -102,11 +167,14 @@ footer {
   border-radius: 12px;
   padding: 1rem;
   margin-top: 2rem;
+  transition: background 0.5s;
 }
+body.night #coming-soon { background: #444; }
 
 /* ====== Media Queries ====== */
 @media(max-width: 600px){
   .basket-container { flex-direction: column; align-items: center; }
+  header { flex-direction: column; gap: 0.5rem; }
 }
 </style>
 </head>
@@ -114,13 +182,15 @@ footer {
 
 <header>
   <h1>🎁 Basket & Beyond</h1>
-  <p>Custom gift baskets for every occasion</p>
   <nav>
-    <a href="#shop">Shop</a> |
-    <a href="#about">About</a> |
-    <a href="#custom">Build Yours</a> |
-    <a href="#coming-soon">Coming Soon</a> |
+    <a href="#shop">Shop</a>
+    <a href="#about">About</a>
+    <a href="#custom">Build Yours</a>
+    <a href="#coming-soon">Coming Soon</a>
     <a href="#contact">Contact</a>
+    <a class="header-button" href="https://mamasaidthis.pages.dev/" target="_blank">Mama Said Here is Help</a>
+    <a class="header-button" href="https://heatherherbalhome.pages.dev/" target="_blank">About Site Creator</a>
+    <button id="theme-toggle">🌙 Night Mode</button>
   </nav>
 </header>
 
@@ -188,14 +258,14 @@ footer {
 <section id="custom">
   <h2>🎨 Build Your Own Basket</h2>
   <p>Pick your basket size, theme, and goodies! Submit your request and we’ll reach out with payment options.</p>
-  <form action="https://submit-form.com/iOX6DQ2GP" method="POST">
+  <form action="https://submit-form.com/iOX6DQ2GP" method="POST" style="text-align:left; max-width:400px; margin:0 auto;">
     <label for="name">Name</label><br>
     <input type="text" id="name" name="name" placeholder="Your Name" required><br>
 
     <label for="email">Email</label><br>
     <input type="email" id="email" name="email" placeholder="Your Email" required><br>
 
-    <label for="basket-size">Select Basket Size / Price Tier</label><br>
+    <label for="basket-size">Basket Size / Price Tier</label><br>
     <select id="basket-size" name="basket-size" required>
       <option value="">-- Choose One --</option>
       <option value="Budget $25">Budget $25</option>
@@ -203,13 +273,15 @@ footer {
       <option value="Luxury $100">Luxury $100</option>
     </select><br>
 
-    <label for="basket-theme">Select Basket Theme(s)</label><br>
-    <input type="checkbox" name="basket-theme" value="Halloween 🎃"> Halloween 🎃<br>
-    <input type="checkbox" name="basket-theme" value="Birthday 🎂"> Birthday 🎂<br>
-    <input type="checkbox" name="basket-theme" value="Baby 👶"> Baby 👶<br>
-    <input type="checkbox" name="basket-theme" value="Date Night 💖"> Date Night 💖<br>
-    <input type="checkbox" name="basket-theme" value="Relax 🕯️"> Relax 🕯️<br>
-    <input type="checkbox" name="basket-theme" value="Other 🌟"> Other 🌟<br>
+    <label>Basket Theme(s)</label><br>
+    <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+      <label><input type="checkbox" name="basket-theme" value="Halloween 🎃"> Halloween 🎃</label>
+      <label><input type="checkbox" name="basket-theme" value="Birthday 🎂"> Birthday 🎂</label>
+      <label><input type="checkbox" name="basket-theme" value="Baby 👶"> Baby 👶</label>
+      <label><input type="checkbox" name="basket-theme" value="Date Night 💖"> Date Night 💖</label>
+      <label><input type="checkbox" name="basket-theme" value="Relax 🕯️"> Relax 🕯️</label>
+      <label><input type="checkbox" name="basket-theme" value="Other 🌟"> Other 🌟</label>
+    </div>
 
     <label for="extras">Special Requests / Notes</label><br>
     <textarea id="extras" name="message" placeholder="Add any special requests, allergies, favorite colors, etc." required></textarea><br>
@@ -226,7 +298,7 @@ footer {
 <section id="contact">
   <h2>📧 Contact</h2>
   <p>Questions or suggestions? Drop your info below!</p>
-  <form action="https://submit-form.com/iOX6DQ2GP" method="POST">
+  <form action="https://submit-form.com/iOX6DQ2GP" method="POST" style="text-align:left; max-width:400px; margin:0 auto;">
     <input type="text" id="contact-name" name="name" placeholder="Your Name" required><br>
     <input type="email" id="contact-email" name="email" placeholder="Your Email" required><br>
     <textarea id="contact-message" name="message" placeholder="Message" required></textarea><br>
@@ -237,6 +309,15 @@ footer {
 <footer>
   <p>Made with ❤️ for busy gift-givers | Basket & Beyond</p>
 </footer>
+
+<script>
+// ====== Night/Day Toggle ======
+const toggle = document.getElementById('theme-toggle');
+toggle.addEventListener('click', () => {
+  document.body.classList.toggle('night');
+  toggle.textContent = document.body.classList.contains('night') ? '☀️ Day Mode' : '🌙 Night Mode';
+});
+</script>
 
 </body>
 </html>
